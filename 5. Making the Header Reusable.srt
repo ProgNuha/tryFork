@@ -1,0 +1,376 @@
+﻿1
+00:00:00,590 --> 00:00:05,370
+Our header looks great but there is just one last thing about this component that I don't really care
+
+2
+00:00:05,370 --> 00:00:08,310
+for inside of our head or component.
+
+3
+00:00:08,310 --> 00:00:13,440
+Notice that the text tag right here has the hard coded value of albums.
+
+4
+00:00:13,890 --> 00:00:14,710
+So here's the thing.
+
+5
+00:00:14,880 --> 00:00:20,460
+As a user navigates through our application will almost certainly want them to see the text and that
+
+6
+00:00:20,460 --> 00:00:24,410
+header change over time as the user goes to like a different era.
+
+7
+00:00:24,450 --> 00:00:25,190
+App.
+
+8
+00:00:25,460 --> 00:00:25,700
+Right.
+
+9
+00:00:25,710 --> 00:00:31,800
+Maybe if we're selling oops or unclick we're selling not only albums in this application but we're also
+
+10
+00:00:31,800 --> 00:00:38,160
+selling like just individual songs or concert tickets or whatever it might be we would want that text
+
+11
+00:00:38,190 --> 00:00:41,460
+inside of here to change over time as such.
+
+12
+00:00:41,480 --> 00:00:48,240
+It be really nice if we could somehow reuse this component in different locations and not have to create
+
+13
+00:00:48,240 --> 00:00:52,860
+a completely new header file every time that we want some different text in here.
+
+14
+00:00:52,960 --> 00:00:54,000
+Right.
+
+15
+00:00:54,120 --> 00:00:59,760
+If we just had this hard coded albums in here I might have to make like a albums head or component and
+
+16
+00:00:59,760 --> 00:01:01,870
+then also a song setter.
+
+17
+00:01:02,040 --> 00:01:07,580
+And each time I would just be changing this text obviously it would be a horrible use of time.
+
+18
+00:01:07,590 --> 00:01:14,360
+We want some better way of reconfiguring or making this component more usable on the fly.
+
+19
+00:01:15,060 --> 00:01:21,560
+So rather than letting the header component decide what text should be displayed inside the text Complan
+
+20
+00:01:21,570 --> 00:01:28,680
+right here we're going to rewrite this component or refactor it slightly so that the app component will
+
+21
+00:01:28,680 --> 00:01:32,070
+decide what text to show in there.
+
+22
+00:01:32,070 --> 00:01:37,260
+So the app is what is showing the header and so it makes sense that the app when it shows the header
+
+23
+00:01:37,410 --> 00:01:38,710
+should be able to decide.
+
+24
+00:01:38,790 --> 00:01:39,380
+All right.
+
+25
+00:01:39,420 --> 00:01:45,870
+You know what I want to show a header and when it displays I'm going to add the text albums or maybe
+
+26
+00:01:45,870 --> 00:01:49,890
+songs or maybe you know whatever else there might be.
+
+27
+00:01:49,980 --> 00:01:55,950
+So to make sure that the app is capable of telling the header what text it should show we're going to
+
+28
+00:01:55,950 --> 00:01:59,900
+use a system in re-act called prompts.
+
+29
+00:02:00,060 --> 00:02:04,470
+So I mentioned prop's a little bit when we're using that style tag we're now going to expand on that
+
+30
+00:02:04,470 --> 00:02:06,370
+a little bit here.
+
+31
+00:02:06,450 --> 00:02:08,050
+So here's the idea.
+
+32
+00:02:08,160 --> 00:02:13,170
+We have the app component which is currently our root component and it is showing the Hetrick component
+
+33
+00:02:13,290 --> 00:02:23,160
+which is the child whenever we want to pass some data from a parent or root component to a child component.
+
+34
+00:02:23,160 --> 00:02:31,370
+We use the props system props as short for properties passing props as it's generally referred to as
+
+35
+00:02:31,380 --> 00:02:37,920
+a major part of the Relax library and it's by far one of the primary means of making components more
+
+36
+00:02:37,920 --> 00:02:45,570
+usable by passing a prop we allow a component like the header to be reconfigured on the fly with some
+
+37
+00:02:45,570 --> 00:02:47,980
+new or different form of data.
+
+38
+00:02:48,450 --> 00:02:49,710
+So that's the idea here.
+
+39
+00:02:50,130 --> 00:02:56,220
+So let's figure out how to use props by making the text in the header a value that is set by the app
+
+40
+00:02:56,220 --> 00:03:00,040
+component instead of something just hardcoded inside the header.
+
+41
+00:03:00,300 --> 00:03:03,150
+Doing this is going to be a three step process.
+
+42
+00:03:03,150 --> 00:03:10,440
+First we're going to identify the variable or the value that we want to be provided by the parent.
+
+43
+00:03:10,440 --> 00:03:16,650
+So in this case we've kind of already decided we want to provide this text right here in the parent
+
+44
+00:03:16,650 --> 00:03:18,730
+component.
+
+45
+00:03:18,730 --> 00:03:24,780
+Second we'll provide a reference to the props that's coming in from the parent component.
+
+46
+00:03:24,780 --> 00:03:30,180
+So because header is a child component it will be given some props object.
+
+47
+00:03:30,210 --> 00:03:34,440
+And so we refer to her referred to as a props object from the parent.
+
+48
+00:03:34,620 --> 00:03:41,010
+Finally we'll make sure that the parent component the app provides that specific Propp that the header
+
+49
+00:03:41,040 --> 00:03:43,140
+is expecting.
+
+50
+00:03:43,340 --> 00:03:50,100
+So again step 1 we know that we want this text to be provided by the parent component.
+
+51
+00:03:50,120 --> 00:03:55,020
+Next we're going to provide a reference to that prop's object that comes from the parent.
+
+52
+00:03:55,070 --> 00:04:00,830
+So whenever the header component is created it will be called with a prop's object that will be the
+
+53
+00:04:00,830 --> 00:04:03,230
+first argument to this function.
+
+54
+00:04:03,230 --> 00:04:13,430
+And so we call it simply props like So next we will replace the album's text right here to a reference
+
+55
+00:04:13,430 --> 00:04:15,680
+to that prop's object.
+
+56
+00:04:15,750 --> 00:04:21,590
+Now props is a javascript object and it will have a property that we're going to pass on it and we want
+
+57
+00:04:21,590 --> 00:04:28,340
+to stick that property that text inside of this GSX right here whenever we make reference to a javascript
+
+58
+00:04:28,340 --> 00:04:37,040
+variable inside of GSX we use curly braces so I can put curly braces on and say props dot header text
+
+59
+00:04:37,190 --> 00:04:38,130
+like so.
+
+60
+00:04:38,630 --> 00:04:45,770
+So we are now kind of entering into a contract here contract runs saying that my parent component should
+
+61
+00:04:45,770 --> 00:04:49,800
+be providing a header text Propp.
+
+62
+00:04:50,290 --> 00:04:52,220
+So now step three it's back.
+
+63
+00:04:52,220 --> 00:04:58,410
+It's up to us when the head or component is created we must pass in a header text.
+
+64
+00:04:59,000 --> 00:05:03,330
+And it must contain the text that the album or the header should be showing.
+
+65
+00:05:03,650 --> 00:05:10,430
+So inside the head or tag I'm going to pass in a property named specifically header text and I'm going
+
+66
+00:05:10,430 --> 00:05:13,750
+to give it the string albums.
+
+67
+00:05:16,330 --> 00:05:21,970
+So now when the header is rendered we will pass in a prop of header text.
+
+68
+00:05:22,180 --> 00:05:24,440
+It will have the value of albums.
+
+69
+00:05:25,000 --> 00:05:30,880
+Then when the header is rendered we'll take that prop's object which is a bunch of data that's coming
+
+70
+00:05:30,880 --> 00:05:32,200
+in from the parent.
+
+71
+00:05:32,200 --> 00:05:37,370
+It will have a property called header text and we will show that inside of our GSX right here.
+
+72
+00:05:37,490 --> 00:05:40,080
+So that is the entire cycle that's the entire thing.
+
+73
+00:05:40,450 --> 00:05:45,610
+One thing I want to point out right now because as we walk this video it might seem like sometimes on
+
+74
+00:05:45,610 --> 00:05:50,980
+choosing property names like on purpose like you know a very particular property name of header text
+
+75
+00:05:51,490 --> 00:05:57,040
+this property name right here of header text can be absolutely anything we want it to be anything it
+
+76
+00:05:57,040 --> 00:06:03,450
+can be or text can be just text it can be you know a thing to show whatever we want it to be.
+
+77
+00:06:03,610 --> 00:06:09,940
+I am just making a sensible default or a sensible property name of header text so that whenever I'm
+
+78
+00:06:09,940 --> 00:06:16,430
+looking at my app component and I see like OK I'm passing the header some configuration object.
+
+79
+00:06:16,480 --> 00:06:18,840
+I wonder what this property is used for.
+
+80
+00:06:18,940 --> 00:06:25,300
+Well with a property name of header text I'm reasonably certain or I've got like you know it's reasonable
+
+81
+00:06:25,300 --> 00:06:31,030
+to assume that this header text is going to be the text it's use inside the header.
+
+82
+00:06:31,090 --> 00:06:31,440
+OK.
+
+83
+00:06:31,480 --> 00:06:39,160
+So let's now test this out in the simulator refresh and hot dog we still got the album's text in here.
+
+84
+00:06:39,160 --> 00:06:42,880
+Now if I want to I can add in you know whatever else I want.
+
+85
+00:06:43,150 --> 00:06:44,920
+And it's going to appear in the header.
+
+86
+00:06:44,950 --> 00:06:51,160
+So now we can reuse this Headrick component over time in other locations and not have to worry about
+
+87
+00:06:51,160 --> 00:06:54,320
+having some static text in there.
+
+88
+00:06:54,560 --> 00:06:54,920
+Cool.
+
+89
+00:06:54,940 --> 00:06:56,400
+So this looks great.
+
+90
+00:06:56,440 --> 00:07:03,640
+Again props like this are passing props as we refer to it is absolute core aspect of react and we're
+
+91
+00:07:03,640 --> 00:07:06,360
+going to repeat this many many times over.
+
+92
+00:07:06,460 --> 00:07:14,010
+So the general thought process is that with props we can reuse components so we make much more frequently.
+
+93
+00:07:14,070 --> 00:07:15,580
+So this looks great.
+
+94
+00:07:15,580 --> 00:07:17,770
+Let's continue on to the next section.
+
